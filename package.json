@@ -1,0 +1,15 @@
+{
+  "name": "gpt-backend",
+  "version": "1.0.0",
+  "description": "Serveur Express pour connecter le front GPT \u00e0 OpenAI via Render.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "node-fetch": "^3.3.2"
+  }
+}
