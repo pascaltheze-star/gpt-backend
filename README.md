@@ -8,7 +8,8 @@ Il renvoie les réponses en **stream** (SSE). Clé OpenAI côté serveur uniquem
 ```bash
 npm install
 OPENAI_API_KEY=ta_cle node server.js
-# Test : http://localhost:8787  (doit afficher OK)
+# Interface : http://localhost:8787
+# Healthcheck : http://localhost:8787/health (renvoie OK)
 ```
 
 ## Déployer sur Render
