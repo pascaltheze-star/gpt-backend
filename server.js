@@ -1,6 +1,8 @@
 import express from "express";
 import fetch from "node-fetch";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
 app.use(express.json());
@@ -10,8 +12,13 @@ app.use(express.json());
 // app.use(cors({ origin: ["https://ton-domaine.com"] }));
 app.use(cors());
 
+// --- Fichiers statiques du front ---
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const publicDir = path.join(__dirname, "public");
+app.use(express.static(publicDir));
+
 // --- Healthcheck ---
-app.get("/", (_, res) => res.send("OK"));
+app.get("/health", (_, res) => res.send("OK"));
 
 // --- Proxy /api/chat -> OpenAI Responses API (SSE) ---
 app.post("/api/chat", async (req, res) => {
@@ -54,6 +61,12 @@ app.post("/api/chat", async (req, res) => {
     console.error(err);
     res.status(500).json({ error: "Server error", details: String(err) });
   }
+});
+
+// --- SPA fallback ---
+app.get("*", (req, res, next) => {
+  if (req.path.startsWith("/api/")) return next();
+  res.sendFile(path.join(publicDir, "index.html"));
 });
 
 // --- Démarrage ---

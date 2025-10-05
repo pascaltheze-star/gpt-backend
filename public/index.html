@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mes GPT - Catalogue</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div class="topbar__left">
+          <span class="logo">GPT <span>Spaces</span></span>
+          <nav class="topbar__nav">
+            <a href="#" class="active">Catalogue</a>
+            <a href="#">Favoris</a>
+            <a href="#">Workflows</a>
+            <a href="#">Docs</a>
+          </nav>
+        </div>
+        <div class="topbar__right">
+          <button class="btn btn--ghost">Créer un Space</button>
+          <button class="btn btn--primary">Se connecter</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero__heading">
+            <h1>Spaces</h1>
+            <p class="subtitle">Le répertoire de mes assistants IA personnalisés</p>
+          </div>
+          <div class="hero__search">
+            <div class="search">
+              <span class="search__icon" aria-hidden="true">🔍</span>
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="Rechercher un assistant, un use case ou un tag"
+              />
+            </div>
+            <div class="filters">
+              <button class="chip" data-filter="all">Tous</button>
+              <button class="chip" data-filter="génération">Génération</button>
+              <button class="chip" data-filter="analyse">Analyse</button>
+              <button class="chip" data-filter="outils">Outils</button>
+              <button class="chip" data-filter="automation">Automation</button>
+            </div>
+            <div class="meta-bar">
+              <div class="meta">
+                <div class="meta__item">
+                  <span class="meta__label">Tri</span>
+                  <select id="sortSelect">
+                    <option value="popular">Popularité</option>
+                    <option value="recent">Récents</option>
+                    <option value="alphabetical">Alphabétique</option>
+                  </select>
+                </div>
+                <div class="meta__item">
+                  <span class="meta__label">Statut</span>
+                  <div class="meta__toggles" id="statusFilters">
+                    <button class="toggle active" data-status="all">Tous</button>
+                    <button class="toggle" data-status="running">En ligne</button>
+                    <button class="toggle" data-status="paused">En pause</button>
+                  </div>
+                </div>
+              </div>
+              <span id="spaceCount" class="meta__count"></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid" id="spaceGrid" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <template id="spaceCardTemplate">
+      <article class="card">
+        <div class="card__status">
+          <span class="dot"></span>
+          <span class="status-label"></span>
+        </div>
+        <div class="card__body">
+          <div class="card__heading">
+            <div class="avatar" aria-hidden="true"></div>
+            <div>
+              <h2 class="card__title"></h2>
+              <p class="card__author"></p>
+            </div>
+          </div>
+          <p class="card__description"></p>
+          <div class="card__tags"></div>
+        </div>
+        <footer class="card__footer">
+          <div class="card__stat">
+            <span class="card__stat-label">Dernière mise à jour</span>
+            <span class="card__stat-value"></span>
+          </div>
+          <div class="card__stat">
+            <span class="card__stat-label">Runs</span>
+            <span class="card__stat-value"></span>
+          </div>
+        </footer>
+      </article>
+    </template>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
